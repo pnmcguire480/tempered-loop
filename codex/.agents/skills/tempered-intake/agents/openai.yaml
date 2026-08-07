@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tempered Intake"
+  short_description: "Turn a project or audit into a gated brief"
+  default_prompt: "Use $tempered-intake to interview me and prepare an approved project brief."
+
+policy:
+  allow_implicit_invocation: false

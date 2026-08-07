@@ -1,0 +1,55 @@
+name: Bug report
+description: Report a reproducible workflow, documentation, or host-compatibility defect.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Do not include secrets, private repository content, personal data, or exploit details that should be reported privately.
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - Shared contract
+        - Claude Code
+        - Cursor
+        - Codex
+        - Qwen Code
+        - Documentation/release
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Host version and exact displayed model ID
+      placeholder: "Example: host 1.2.3; provider/model-id"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Use a disposable, non-sensitive project where possible.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed behavior and evidence
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed credentials, private URLs, personal data, and private project content.
+          required: true

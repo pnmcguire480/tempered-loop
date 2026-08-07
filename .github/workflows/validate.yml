@@ -1,0 +1,79 @@
+name: Validate kit
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: ${{ matrix.os }} / Python ${{ matrix.python }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.10", "3.12"]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@a309ff8b426b58ec0e2a45f0f869d46889d02405 # v6.2.0
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Run validation through setup-python's trusted absolute interpreter
+        shell: pwsh
+        run: |
+          $runningOnWindows = [System.Environment]::OSVersion.Platform -eq
+            [System.PlatformID]::Win32NT
+          $candidate = if ($runningOnWindows) {
+            Join-Path $env:pythonLocation "python.exe"
+          } else {
+            Join-Path $env:pythonLocation "bin/python"
+          }
+          $pythonItem = Get-Item -LiteralPath $candidate -Force -ErrorAction Stop
+          $resolvedTarget = $pythonItem.ResolveLinkTarget($true)
+          if ($null -ne $resolvedTarget) {
+            $pythonItem = $resolvedTarget
+          }
+          if ($pythonItem.PSIsContainer) {
+            throw "Trusted Python must resolve to a regular file"
+          }
+          if (($pythonItem.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw "Trusted Python must resolve to a non-reparse regular file"
+          }
+          $trustedPython = $pythonItem.FullName
+          if (-not [IO.Path]::IsPathFullyQualified($trustedPython)) {
+            throw "Trusted Python path is not absolute"
+          }
+          $workspace = (Resolve-Path -LiteralPath $env:GITHUB_WORKSPACE).Path
+          $relativeToWorkspace = [IO.Path]::GetRelativePath($workspace, $trustedPython)
+          $outsideByParent = $relativeToWorkspace -eq ".." -or
+            $relativeToWorkspace.StartsWith(".." + [IO.Path]::DirectorySeparatorChar)
+          if (-not [IO.Path]::IsPathFullyQualified($relativeToWorkspace) -and
+              -not $outsideByParent) {
+            throw "Trusted Python unexpectedly resolves inside the pull-request workspace"
+          }
+          function Invoke-TrustedPython {
+            & $trustedPython @args
+            if ($LASTEXITCODE -ne 0) {
+              throw "Trusted Python command failed with exit code $LASTEXITCODE"
+            }
+          }
+          Invoke-TrustedPython -I -S -B scripts/validate.py
+          Invoke-TrustedPython -I -S -B claude/.claude/tempered-tools/tempered_receipt.py self-test
+          Invoke-TrustedPython -I -S -B cursor/.cursor/tempered-tools/tempered_receipt.py self-test
+          Invoke-TrustedPython -I -S -B codex/.agents/tempered-tools/tempered_receipt.py self-test
+          Invoke-TrustedPython -I -S -B qwen/.qwen/tempered-tools/tempered_receipt.py self-test
+          Invoke-TrustedPython -I -S -B -m unittest discover -s tests -p "test_*.py" -v

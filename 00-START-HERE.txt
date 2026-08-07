@@ -1,0 +1,166 @@
+TEMPERED KIT — VERY EASY SETUP
+==============================
+
+This box has four doors. Pick ONE door for the app you are using.
+
+  Claude Code  -> open the "claude" folder
+  Cursor       -> open the "cursor" folder
+  Codex        -> open the "codex" folder
+  Qwen Code    -> open the "qwen" folder
+
+Do not copy all four doors into one project.
+
+
+STEP 1 — UNZIP THE BOX
+----------------------
+
+Right-click the ZIP file and choose "Extract All".
+
+
+STEP 2 — OPEN YOUR PROJECT
+--------------------------
+
+Your project is the folder that holds the thing you want to make or fix.
+Open that folder in File Explorer.
+
+Before you copy anything, ask: "Do I own and trust this project?"
+
+  YES, or it is brand new -> keep going.
+  NO, or I am not sure    -> STOP. Read THREAT-MODEL.md first.
+
+An instruction box cannot make a strange project safe after the app has
+already trusted that project's hidden instructions. The threat-model guide
+shows how to inspect a read-only copy from a new empty folder instead.
+
+
+STEP 3 — COPY ONE LITTLE FOLDER
+-------------------------------
+
+Copy the folder shown for your app into your project folder:
+
+  Claude Code  -> copy .claude
+  Cursor       -> copy .cursor
+  Codex        -> copy .agents
+  Qwen Code    -> copy .qwen
+
+The little dot at the front is part of the name. Keep it.
+
+If Windows asks to replace files, press Cancel. Read the README inside your
+chosen app folder so you can merge safely instead of erasing your own setup.
+
+
+STEP 4 — REOPEN YOUR APP
+------------------------
+
+Close and reopen Claude Code, Cursor, Codex, or Qwen Code in that project.
+
+The little instruction box includes its own checker. Ask a grown-up or computer
+administrator for the FULL path to one Python 3 program they already trust.
+It must live outside your project and must not be a shortcut, link, junction,
+reparse point, or project virtual environment. Do not type only "python",
+"python3", or "py" and hope the computer finds the right one. Your app uses
+that same full path with safe isolated mode (-I -S -B) for every checker call.
+Open PYTHON-SETUP.md for picture-like Windows, macOS, and Linux directions.
+If that test fails, stop and use the detailed README for your app.
+
+
+STEP 5 — ASK THE FIRST HELPER
+-----------------------------
+
+Type the first command for your app:
+
+  Claude Code  -> /tempered-intake
+  Cursor       -> /tempered-intake
+  Codex        -> $tempered-intake
+  Qwen Code    -> /tempered:intake
+
+Answer its small groups of questions. Say "unknown" when you do not know.
+It will make a project brief. It will NOT start building.
+
+To make the SHA256 fingerprint, the checker puts one little scratch-card
+folder in your computer's temporary drawer, OUTSIDE your project. Your app may
+ask if that exact temporary folder is okay. Say yes only to that one named
+folder. Say no if it asks for the whole computer, a project scratch folder,
+Auto, or YOLO. The checker removes its scratch folder after the approved file
+matches it. If it cannot do that safely, it stops.
+
+When it shows an approval sentence, read the brief first. If it is right,
+copy the whole approval sentence exactly into a NEW message. Add no other words.
+The sentence has a SHA256 fingerprint and a NONCE ticket. Keep all of it.
+
+After the file is checked, the app gives you a TEMPERED BRIEF RECEIPT. Save that receipt
+in your private notes OUTSIDE the project folder. The second helper will ask
+you to show it, so a changed project file cannot pretend you approved it.
+
+
+STEP 6 — ASK THE SECOND HELPER
+------------------------------
+
+Start a fresh chat in the same project. Type:
+
+  Claude Code  -> /tempered-compile
+  Cursor       -> /tempered-compile
+  Codex        -> $tempered-compile
+  Qwen Code    -> /tempered:compile
+
+It first asks for your saved TEMPERED BRIEF RECEIPT. Then it designs the workers, tests,
+safety rules, and stopping rules. It still will NOT start building. Read its
+preview. If it is right, copy its exact approval sentence into a NEW message
+with no extra words. Save the new TEMPERED SETUP RECEIPT outside the project too.
+It uses the same one temporary scratch folder per revision for setup and plan
+fingerprints. A correction throws away the old folder and makes a new ticket.
+
+
+STEP 7 — FOLLOW THE NEW RUNBOOK
+-------------------------------
+
+The second helper creates a RUNBOOK file inside your project. Open that file
+and follow it one step at a time. Show your saved TEMPERED SETUP RECEIPT when asked.
+
+Before any project work begins, there is one last stop sign: the app must show
+you the real execution plan and ask for an exact TEMPERED PLAN approval. Save
+the TEMPERED PLAN RECEIPT it gives you; any separate launch must check that ticket.
+
+
+THE THREE STOP SIGNS
+--------------------
+
+  Stop sign 1: You approve the project brief.
+  Stop sign 2: You approve the generated setup.
+  Stop sign 3: You approve the exact execution plan.
+
+Changing a preview makes the old approval sentence expire. Never type
+"approve everything" and never turn on an unrestricted/YOLO mode.
+
+If a plan later wants to delete, publish, deploy, buy, migrate, send a
+message, touch secrets, or change permissions/scope/budget, there is another
+small red light. In this preview, approval lets the app print ONE exact
+"NOT EXECUTED" instruction card, then it stops. The app never performs that
+dangerous action. A person may run the card outside the app and later report
+what happened. Plan approval is not a blank check.
+
+The grown-up version: high-impact work is a manual-only manual handoff. The
+agent never executes it and makes no process call. Right before printing, it
+uses preview-consume; the card says NOT EXECUTED and
+HANDED_OFF/EXECUTION_UNKNOWN. A human acts out-of-agent, outside kit
+enforcement. If delivery is ambiguous, there is no cleanup; use a new revision.
+PLAN never approves the card. This is best-effort single-delivery during a
+compliant, untampered helper lifecycle, not a security guarantee or durable
+replay protection. The same OS principal can reverse or recreate the used
+sticker, so human idempotency and replay controls are needed because duplicate
+execution may happen.
+
+
+IF SOMETHING IS MISSING
+-----------------------
+
+1. Make sure you copied the dot-folder into the TOP of your project.
+2. Restart the app.
+3. Check the README inside your chosen app folder.
+4. Do not guess a command, model name, permission, or safety setting.
+
+That is it. Pick one door, copy one folder, run two helpers, and read all
+three stop signs before saying yes.
+
+If you used an older differently named version, do not mix the two versions.
+Read MIGRATION.md and start again with new receipts.

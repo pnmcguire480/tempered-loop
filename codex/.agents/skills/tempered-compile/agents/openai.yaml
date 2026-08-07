@@ -1,0 +1,7 @@
+interface:
+  display_name: "Tempered Compiler"
+  short_description: "Compile an approved brief into a bounded run"
+  default_prompt: "Use $tempered-compile to compile my approved brief into a safe execution setup."
+
+policy:
+  allow_implicit_invocation: false

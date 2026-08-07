@@ -1,0 +1,27 @@
+# Operating systems and editors
+.DS_Store
+Thumbs.db
+Desktop.ini
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local artifacts
+*.log
+*.tmp
+*.bak
+*.zip
+__pycache__/
+*.py[cod]
+
+# Credentials and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# User-carried Tempered receipts should stay outside repositories
+MY TEMPERED RECEIPTS.txt
+*TEMPERED-RECEIPTS*
