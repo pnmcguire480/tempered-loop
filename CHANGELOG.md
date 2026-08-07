@@ -23,7 +23,7 @@ All notable changes to this project are documented here.
 - Explicit trusted-repository and clean-bootstrap threat modes; remote/cloud execution is unsupported in this public preview.
 - Finite critique budgets, plateau stopping, rollback, and human-decision terminals.
 - Child-simple and detailed platform setup guides.
-- Dependency-free semantic/adversarial validation and a pinned GitHub Actions workflow for Windows and Ubuntu.
+- Dependency-free semantic/adversarial validation and a pinned GitHub Actions workflow for Windows, macOS, and Ubuntu.
 - Public attribution, security, contribution, and licensing documentation.
 
 ### Validation
