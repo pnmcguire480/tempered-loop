@@ -18,6 +18,11 @@ from pathlib import Path
 
 
 sys.dont_write_bytecode = True
+# Hosted macOS commonly exposes its temp directory through /var -> /private/var,
+# while hosted Windows can expose a short-name/profile alias.  The production
+# helper intentionally rejects aliased project roots, so make the test fixture
+# base canonical before any TemporaryDirectory is created.
+tempfile.tempdir = str(Path(tempfile.gettempdir()).resolve(strict=True))
 REPO_ROOT = Path(__file__).resolve().parents[1]
 VALIDATOR = REPO_ROOT / "scripts" / "validate.py"
 HELPER_PATHS = (
